@@ -12,6 +12,21 @@ from _2048_Cuadros import Tile
 
 class GAME:
     def __init__(self, window, RECT_WIDTH, RECT_HEIGHT, COLS, ROWS):
+        """
+        Inicializa el juego con los parámetros dados.
+
+        Parameters
+        --------------
+        window (pygame.Surface): La ventana del juego.
+        RECT_WIDTH (int): Ancho de los rectángulos de las fichas.
+        RECT_HEIGHT (int): Altura de los rectángulos de las fichas.
+        COLS (int): Número de columnas en la cuadrícula.
+        ROWS (int): Número de filas en la cuadrícula.
+
+        Returns
+        -------------
+        No devuelve nada.
+        """
         self.window = window
         self.RECT_WIDTH = RECT_WIDTH
         self.RECT_HEIGHT = RECT_HEIGHT
@@ -21,6 +36,20 @@ class GAME:
         self.tiles = self.generate_tiles()
 
     def draw_grid(self, OUTLINE_COLOR, OUTLINE_THICKNESS, WIDTH, HEIGHT):
+        """
+        Dibuja la cuadrícula del juego en la ventana.
+
+        Parameters
+        --------------
+        OUTLINE_COLOR (tuple): Color de las líneas de la cuadrícula.
+        OUTLINE_THICKNESS (int): Grosor de las líneas de la cuadrícula.
+        WIDTH (int): Ancho de la ventana.
+        HEIGHT (int): Altura de la ventana.
+
+        Returns
+        -------------
+        No devuelve nada.
+        """
         for row in range(1, self.ROWS):
             y = row * self.RECT_HEIGHT
             pygame.draw.line(self.window, OUTLINE_COLOR, (0, y), (WIDTH, y), OUTLINE_THICKNESS)
@@ -32,6 +61,23 @@ class GAME:
         pygame.draw.rect(self.window, OUTLINE_COLOR, (0, 0, WIDTH, HEIGHT), OUTLINE_THICKNESS)
 
     def draw(self, BACKGROUND_COLOR, FONT, FONT_COLOR, OUTLINE_COLOR, OUTLINE_THICKNESS, WIDTH, HEIGHT):
+        """
+        Dibuja el estado actual del juego en la ventana.
+
+        Parameters
+        --------------
+        BACKGROUND_COLOR (tuple): Color de fondo de la ventana.
+        FONT (pygame.font.Font): Fuente para renderizar los valores de las fichas.
+        FONT_COLOR (tuple): Color de los valores de las fichas.
+        OUTLINE_COLOR (tuple): Color de las líneas de la cuadrícula.
+        OUTLINE_THICKNESS (int): Grosor de las líneas de la cuadrícula.
+        WIDTH (int): Ancho de la ventana.
+        HEIGHT (int): Altura de la ventana.
+
+        Returns
+        -------------
+        No devuelve nada.
+        """
         self.window.fill(BACKGROUND_COLOR)
 
         for tile in self.tiles.values():
@@ -42,6 +88,17 @@ class GAME:
         pygame.display.update()
 
     def get_random_pos(self):
+        """
+        Obtiene una posición aleatoria en la cuadrícula que no esté ocupada por una ficha.
+
+        Parameters
+        --------------
+        No tiene parámetros.
+
+        Returns
+        -------------
+        tuple: Fila y columna aleatoria.
+        """
         row = None
         col = None
         while True:
@@ -54,6 +111,27 @@ class GAME:
         return row, col
 
     def move_tiles(self, direction, clock, MOVE_VEL, FPS, BACKGROUND_COLOR, FONT, FONT_COLOR, OUTLINE_COLOR, OUTLINE_THICKNESS, WIDTH, HEIGHT):
+        """
+        Mueve las fichas en la dirección especificada y actualiza el estado del juego.
+
+        Parameters
+        --------------
+        direction (str): Dirección en la que mover las fichas ('left', 'right', 'up', 'down').
+        clock (pygame.time.Clock): Reloj del juego para controlar la velocidad de movimiento.
+        MOVE_VEL (int): Velocidad de movimiento de las fichas.
+        FPS (int): Cuadros por segundo del juego.
+        BACKGROUND_COLOR (tuple): Color de fondo de la ventana.
+        FONT (pygame.font.Font): Fuente para renderizar los valores de las fichas.
+        FONT_COLOR (tuple): Color de los valores de las fichas.
+        OUTLINE_COLOR (tuple): Color de las líneas de la cuadrícula.
+        OUTLINE_THICKNESS (int): Grosor de las líneas de la cuadrícula.
+        WIDTH (int): Ancho de la ventana.
+        HEIGHT (int): Altura de la ventana.
+
+        Returns
+        -------------
+        str: Estado del juego ('continue' o 'lost').
+        """
         updated = True
         blocks = set()
 
@@ -138,6 +216,17 @@ class GAME:
         return self.end_move()
 
     def end_move(self):
+        """
+        Finaliza el movimiento, añade una nueva ficha si hay espacio.
+
+        Parameters
+        --------------
+        No tiene parámetros.
+
+        Returns
+        -------------
+        str: Estado del juego ('continue' o 'lost').
+        """
         if len(self.tiles) == 16:
             return "lost"
 
@@ -146,6 +235,24 @@ class GAME:
         return "continue"
 
     def update_tiles(self, sorted_tiles, BACKGROUND_COLOR, FONT, FONT_COLOR, OUTLINE_COLOR, OUTLINE_THICKNESS, WIDTH, HEIGHT):
+        """
+        Actualiza las fichas en el estado del juego.
+
+        Parameters
+        --------------
+        sorted_tiles (list): Lista de fichas ordenadas.
+        BACKGROUND_COLOR (tuple): Color de fondo de la ventana.
+        FONT (pygame.font.Font): Fuente para renderizar los valores de las fichas.
+        FONT_COLOR (tuple): Color de los valores de las fichas.
+        OUTLINE_COLOR (tuple): Color de las líneas de la cuadrícula.
+        OUTLINE_THICKNESS (int): Grosor de las líneas de la cuadrícula.
+        WIDTH (int): Ancho de la ventana.
+        HEIGHT (int): Altura de la ventana.
+
+        Returns
+        -------------
+        No devuelve nada.
+        """
         self.tiles.clear()
         for tile in sorted_tiles:
             self.tiles[f"{tile.row}{tile.col}"] = tile
@@ -153,6 +260,17 @@ class GAME:
         self.draw(BACKGROUND_COLOR, FONT, FONT_COLOR, OUTLINE_COLOR, OUTLINE_THICKNESS, WIDTH, HEIGHT)
 
     def generate_tiles(self):
+        """
+        Genera las fichas iniciales del juego.
+
+        Parameters
+        --------------
+        No tiene parámetros.
+
+        Returns
+        -------------
+        dict: Diccionario con las fichas iniciales.
+        """
         tiles = {}
         for _ in range(2):
             row, col = self.get_random_pos()

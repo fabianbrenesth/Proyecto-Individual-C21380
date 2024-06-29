@@ -9,11 +9,14 @@ import pygame
 
 from _2048_Juego import GAME
 
+#Inicializa el juego
 pygame.init()
 
-FPS = 60  # frames per second, que tan rapido corre el juego
+#Variables a utilizar
 
-WIDTH, HEIGHT = 800, 800  # para que sean cuadrados
+FPS = 60  #frames per second, que tan rapido corre el juego
+
+WIDTH, HEIGHT = 800, 800  #dimensiones de la ventana
 ROWS = 4
 COLS = 4
 
@@ -26,15 +29,31 @@ BACKGROUND_COLOR = (205, 192, 180)
 FONT_COLOR = (119, 110, 101)
 
 FONT = pygame.font.SysFont("comicsans", 60, bold=True)
-MOVE_VEL = 20  # VELOCIDAD A QUE SE MUEVEN LAS TILES
+MOVE_VEL = 20  #velocidad a la que se mueven las fichas
 
-# La ventana es donde van a salir las cosas
+# La ventana donde van a salir las cosas
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("2048")
 
 
 def run_2048_game():
+    """
+    Función principal para ejecutar el juego 2048.
+    
+    Inicia el bucle principal del juego y gestiona los eventos y la lógica del juego.
+    """
     def main(window):
+        """
+        Bucle principal del juego.
+
+        Parameters
+        --------------
+        window (pygame.Surface): La ventana del juego.
+
+        Returns
+        -------------
+        No devuelve nada.
+        """
         clock = pygame.time.Clock()
         run = True
 

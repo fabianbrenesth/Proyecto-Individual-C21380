@@ -12,11 +12,11 @@ class SNAKE:
 	def __init__(self):
         """
         Inicializa la serpiente con su cuerpo, dirección y gráficos.
-
+        
         Parameters
         --------------
         No tiene parámetros.
-
+        
         Returns
         -------------
         No devuelve nada.
@@ -47,12 +47,12 @@ class SNAKE:
 	def draw_snake(self, cell_size, screen):
         """
         Dibuja la serpiente en la pantalla.
-
+        
         Parameters
         --------------
         cell_size (int): Tamaño de cada celda en la cuadrícula.
         screen (pygame.Surface): La superficie en la que se dibuja la serpiente.
-
+        
         Returns
         -------------
         No devuelve nada.
@@ -89,11 +89,11 @@ class SNAKE:
 	def update_head_graphics(self):
         """
         Actualiza la gráfica de la cabeza de la serpiente basada en su dirección.
-
+        
         Parameters
         --------------
         No tiene parámetros.
-
+        
         Returns
         -------------
         No devuelve nada.
@@ -107,11 +107,11 @@ class SNAKE:
 	def update_tail_graphics(self):
         """
         Actualiza la gráfica de la cola de la serpiente basada en su dirección.
-
+        
         Parameters
         --------------
         No tiene parámetros.
-
+        
         Returns
         -------------
         No devuelve nada.
@@ -125,11 +125,11 @@ class SNAKE:
 	def move_snake(self):
         """
         Mueve la serpiente en la dirección actual.
-
+        
         Parameters
         --------------
         No tiene parámetros.
-
+        
         Returns
         -------------
         No devuelve nada.
@@ -147,11 +147,11 @@ class SNAKE:
 	def add_block(self):
         """
         Añade un nuevo bloque al cuerpo de la serpiente.
-
+        
         Parameters
         --------------
         No tiene parámetros.
-
+        
         Returns
         -------------
         No devuelve nada.
@@ -161,11 +161,11 @@ class SNAKE:
 	def play_crunch_sound(self):
         """
         Reproduce el sonido de crunch cuando la serpiente come.
-
+        
         Parameters
         --------------
         No tiene parámetros.
-
+        
         Returns
         -------------
         No devuelve nada.
@@ -175,11 +175,11 @@ class SNAKE:
 	def reset(self):
         """
         Reinicia la serpiente a su estado inicial.
-
+        
         Parameters
         --------------
         No tiene parámetros.
-
+        
         Returns
         -------------
         No devuelve nada.

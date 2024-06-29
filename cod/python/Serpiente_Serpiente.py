@@ -10,6 +10,17 @@ from pygame.math import Vector2
 
 class SNAKE:
 	def __init__(self):
+        """
+        Inicializa la serpiente con su cuerpo, dirección y gráficos.
+
+        Parameters
+        --------------
+        No tiene parámetros.
+
+        Returns
+        -------------
+        No devuelve nada.
+        """
 		self.body = [Vector2(5,10),Vector2(4,10),Vector2(3,10)]
 		self.direction = Vector2(0,0)
 		self.new_block = False
@@ -34,6 +45,18 @@ class SNAKE:
 		self.crunch_sound = pygame.mixer.Sound('Sound/crunch.wav')
 
 	def draw_snake(self, cell_size, screen):
+        """
+        Dibuja la serpiente en la pantalla.
+
+        Parameters
+        --------------
+        cell_size (int): Tamaño de cada celda en la cuadrícula.
+        screen (pygame.Surface): La superficie en la que se dibuja la serpiente.
+
+        Returns
+        -------------
+        No devuelve nada.
+        """
 		self.update_head_graphics()
 		self.update_tail_graphics()
 
@@ -64,6 +87,17 @@ class SNAKE:
 						screen.blit(self.body_br,block_rect)
 
 	def update_head_graphics(self):
+        """
+        Actualiza la gráfica de la cabeza de la serpiente basada en su dirección.
+
+        Parameters
+        --------------
+        No tiene parámetros.
+
+        Returns
+        -------------
+        No devuelve nada.
+        """
 		head_relation = self.body[1] - self.body[0]
 		if head_relation == Vector2(1,0): self.head = self.head_left
 		elif head_relation == Vector2(-1,0): self.head = self.head_right
@@ -71,6 +105,17 @@ class SNAKE:
 		elif head_relation == Vector2(0,-1): self.head = self.head_down
 
 	def update_tail_graphics(self):
+        """
+        Actualiza la gráfica de la cola de la serpiente basada en su dirección.
+
+        Parameters
+        --------------
+        No tiene parámetros.
+
+        Returns
+        -------------
+        No devuelve nada.
+        """
 		tail_relation = self.body[-2] - self.body[-1]
 		if tail_relation == Vector2(1,0): self.tail = self.tail_left
 		elif tail_relation == Vector2(-1,0): self.tail = self.tail_right
@@ -78,6 +123,17 @@ class SNAKE:
 		elif tail_relation == Vector2(0,-1): self.tail = self.tail_down
 
 	def move_snake(self):
+        """
+        Mueve la serpiente en la dirección actual.
+
+        Parameters
+        --------------
+        No tiene parámetros.
+
+        Returns
+        -------------
+        No devuelve nada.
+        """
 		if self.new_block == True:
 			body_copy = self.body[:]
 			body_copy.insert(0,body_copy[0] + self.direction)
@@ -89,11 +145,44 @@ class SNAKE:
 			self.body = body_copy[:]
 
 	def add_block(self):
+        """
+        Añade un nuevo bloque al cuerpo de la serpiente.
+
+        Parameters
+        --------------
+        No tiene parámetros.
+
+        Returns
+        -------------
+        No devuelve nada.
+        """
 		self.new_block = True
 
 	def play_crunch_sound(self):
+        """
+        Reproduce el sonido de crunch cuando la serpiente come.
+
+        Parameters
+        --------------
+        No tiene parámetros.
+
+        Returns
+        -------------
+        No devuelve nada.
+        """
 		self.crunch_sound.play()
 
 	def reset(self):
+        """
+        Reinicia la serpiente a su estado inicial.
+
+        Parameters
+        --------------
+        No tiene parámetros.
+
+        Returns
+        -------------
+        No devuelve nada.
+        """
 		self.body = [Vector2(5,10),Vector2(4,10),Vector2(3,10)]
 		self.direction = Vector2(0,0)

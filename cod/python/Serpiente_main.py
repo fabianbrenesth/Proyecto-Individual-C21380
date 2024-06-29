@@ -10,6 +10,7 @@ from pygame.math import Vector2
 
 from Serpiente_Juego import GAME
 
+#Inicialización de las variables
 pygame.mixer.pre_init(44100,-16,2,512)
 pygame.init()
 cell_size = 40
@@ -24,6 +25,11 @@ pygame.time.set_timer(SCREEN_UPDATE,150)
 
 #Correr todo el juego  
 def run_snake_game():
+    """
+    Función principal para ejecutar el juego de la serpiente.
+
+    Inicia el bucle principal del juego y gestiona los eventos y la lógica del juego.
+    """
     main_game = GAME(cell_number)
     
     while True:
